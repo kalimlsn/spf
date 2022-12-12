@@ -12,7 +12,6 @@ select
     grams,
     price,
     title,
-    weight,
     barcode,
     option1,
     option2,
