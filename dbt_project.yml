@@ -1,0 +1,199 @@
+name: airbyte_utils
+version: '1.0'
+config-version: 2
+profile: normalize
+model-paths:
+- models
+docs-paths:
+- docs
+analysis-paths:
+- analysis
+test-paths:
+- tests
+seed-paths:
+- data
+macro-paths:
+- macros
+target-path: ../build
+log-path: ../logs
+packages-install-path: ../dbt
+clean-targets:
+- build
+- dbt_modules
+quoting:
+  database: true
+  schema: false
+  identifier: true
+models:
+  airbyte_utils:
+    +materialized: table
+    generated:
+      airbyte_ctes:
+        +tags: airbyte_internal_cte
+        +materialized: ephemeral
+      airbyte_incremental:
+        +tags: incremental_tables
+        +materialized: incremental
+        +on_schema_change: sync_all_columns
+      airbyte_tables:
+        +tags: normalized_tables
+        +materialized: table
+      airbyte_views:
+        +tags: airbyte_internal_views
+        +materialized: view
+dispatch:
+- macro_namespace: dbt_utils
+  search_order:
+  - airbyte_utils
+  - dbt_utils
+vars:
+  json_column: _airbyte_data
+  models_to_source:
+    sf_customers_ab1: public._airbyte_raw_sf_customers
+    sf_customers_ab2: public._airbyte_raw_sf_customers
+    sf_customers_stg: public._airbyte_raw_sf_customers
+    sf_customers_scd: public._airbyte_raw_sf_customers
+    sf_customers: public._airbyte_raw_sf_customers
+    sf_discount_codes_ab1: public._airbyte_raw_sf_discount_codes
+    sf_discount_codes_ab2: public._airbyte_raw_sf_discount_codes
+    sf_discount_codes_stg: public._airbyte_raw_sf_discount_codes
+    sf_discount_codes_scd: public._airbyte_raw_sf_discount_codes
+    sf_discount_codes: public._airbyte_raw_sf_discount_codes
+    sf_draft_orders_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_stg: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_scd: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders: public._airbyte_raw_sf_draft_orders
+    sf_price_rules_ab1: public._airbyte_raw_sf_price_rules
+    sf_price_rules_ab2: public._airbyte_raw_sf_price_rules
+    sf_price_rules_ab3: public._airbyte_raw_sf_price_rules
+    sf_price_rules: public._airbyte_raw_sf_price_rules
+    sf_products_ab1: public._airbyte_raw_sf_products
+    sf_products_ab2: public._airbyte_raw_sf_products
+    sf_products_stg: public._airbyte_raw_sf_products
+    sf_products_scd: public._airbyte_raw_sf_products
+    sf_products: public._airbyte_raw_sf_products
+    sf_customers_addresses_ab1: public._airbyte_raw_sf_customers
+    sf_customers_addresses_ab2: public._airbyte_raw_sf_customers
+    sf_customers_addresses_ab3: public._airbyte_raw_sf_customers
+    sf_customers_addresses: public._airbyte_raw_sf_customers
+    sf_customers_default_address_ab1: public._airbyte_raw_sf_customers
+    sf_customers_default_address_ab2: public._airbyte_raw_sf_customers
+    sf_customers_default_address_ab3: public._airbyte_raw_sf_customers
+    sf_customers_default_address: public._airbyte_raw_sf_customers
+    sf_draft_orders_customer_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_customer_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_customer_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_customer: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax_lines_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax_lines_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax_lines_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax_lines: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_shipping_line_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_shipping_line_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_shipping_line_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_shipping_line: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_billing_address_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_billing_address_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_billing_address_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_billing_address: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_note_attributes_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_note_attributes_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_note_attributes_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_note_attributes: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_applied_discount_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_applied_discount_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_applied_discount_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_applied_discount: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_shipping_address_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_shipping_address_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_shipping_address_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_shipping_address: public._airbyte_raw_sf_draft_orders
+    sf_price_rules_prerequisite_quantity_range_ab1: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prerequisite_quantity_range_ab2: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prerequisite_quantity_range_ab3: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prerequisite_quantity_range: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prerequisite_subtotal_range_ab1: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prerequisite_subtotal_range_ab2: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prerequisite_subtotal_range_ab3: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prerequisite_subtotal_range: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere___shipping_price_range_ab1: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere___shipping_price_range_ab2: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere___shipping_price_range_ab3: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere___shipping_price_range: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere___entitlement_purchase_ab1: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere___entitlement_purchase_ab2: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere___entitlement_purchase_ab3: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere___entitlement_purchase: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere__lement_quantity_ratio_ab1: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere__lement_quantity_ratio_ab2: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere__lement_quantity_ratio_ab3: public._airbyte_raw_sf_price_rules
+    sf_price_rules_prere__lement_quantity_ratio: public._airbyte_raw_sf_price_rules
+    sf_products_image_ab1: public._airbyte_raw_sf_products
+    sf_products_image_ab2: public._airbyte_raw_sf_products
+    sf_products_image_ab3: public._airbyte_raw_sf_products
+    sf_products_image: public._airbyte_raw_sf_products
+    sf_products_images_ab1: public._airbyte_raw_sf_products
+    sf_products_images_ab2: public._airbyte_raw_sf_products
+    sf_products_images_ab3: public._airbyte_raw_sf_products
+    sf_products_images: public._airbyte_raw_sf_products
+    sf_products_options_ab1: public._airbyte_raw_sf_products
+    sf_products_options_ab2: public._airbyte_raw_sf_products
+    sf_products_options_ab3: public._airbyte_raw_sf_products
+    sf_products_options: public._airbyte_raw_sf_products
+    sf_products_variants_ab1: public._airbyte_raw_sf_products
+    sf_products_variants_ab2: public._airbyte_raw_sf_products
+    sf_products_variants_ab3: public._airbyte_raw_sf_products
+    sf_products_variants: public._airbyte_raw_sf_products
+    sf_draft_orders_customer_default_address_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_customer_default_address_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_customer_default_address_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_customer_default_address: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax_lines_price_set_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax_lines_price_set_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax_lines_price_set_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax_lines_price_set: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_tax_lines_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_tax_lines_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_tax_lines_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_tax_lines: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_properties_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_properties_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_properties_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_properties: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_applied_discount_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_applied_discount_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_applied_discount_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line_items_applied_discount: public._airbyte_raw_sf_draft_orders
+    sf_products_variants_presentment_prices_ab1: public._airbyte_raw_sf_products
+    sf_products_variants_presentment_prices_ab2: public._airbyte_raw_sf_products
+    sf_products_variants_presentment_prices_ab3: public._airbyte_raw_sf_products
+    sf_products_variants_presentment_prices: public._airbyte_raw_sf_products
+    sf_draft_orders_tax____price_set_shop_money_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax____price_set_shop_money_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax____price_set_shop_money_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax____price_set_shop_money: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax___set_presentment_money_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax___set_presentment_money_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax___set_presentment_money_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_tax___set_presentment_money: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line__s_tax_lines_price_set_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line__s_tax_lines_price_set_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line__s_tax_lines_price_set_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line__s_tax_lines_price_set: public._airbyte_raw_sf_draft_orders
+    sf_products_variants__sentment_prices_price_ab1: public._airbyte_raw_sf_products
+    sf_products_variants__sentment_prices_price_ab2: public._airbyte_raw_sf_products
+    sf_products_variants__sentment_prices_price_ab3: public._airbyte_raw_sf_products
+    sf_products_variants__sentment_prices_price: public._airbyte_raw_sf_products
+    sf_draft_orders_line___price_set_shop_money_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line___price_set_shop_money_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line___price_set_shop_money_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line___price_set_shop_money: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line__set_presentment_money_ab1: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line__set_presentment_money_ab2: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line__set_presentment_money_ab3: public._airbyte_raw_sf_draft_orders
+    sf_draft_orders_line__set_presentment_money: public._airbyte_raw_sf_draft_orders
