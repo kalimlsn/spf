@@ -20,8 +20,9 @@ select
     taxable,
     image_id,
     {{ adapter.quote('position') }},
-    tax_code,
+    shop_url,
     created_at,
+    product_id,
     updated_at,
     weight_unit,
     compare_at_price,
@@ -42,3 +43,4 @@ from {{ ref('sf_products_variants_ab3') }}
 -- variants at sf_products/variants from {{ ref('sf_products_scd') }}
 where 1 = 1
 {{ incremental_clause('_airbyte_emitted_at', this) }}
+
