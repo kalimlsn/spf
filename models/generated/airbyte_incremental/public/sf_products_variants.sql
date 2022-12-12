@@ -10,7 +10,7 @@ select
     {{ adapter.quote('id') }},
     sku,
     price,
-    title,
+    title as name,
     shop_url,
     created_at,
     product_id as parent_id,
