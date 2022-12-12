@@ -13,7 +13,7 @@ select
     title,
     shop_url,
     created_at,
-    product_id,
+    product_id as parent_id,
     updated_at,
     weight_unit,
     compare_at_price,
