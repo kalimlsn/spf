@@ -13,7 +13,7 @@ select
     title,
     shop_url,
     created_at,
-    product_id as parent_id,
+    product_id ,
     updated_at,
     _airbyte_ab_id,
     _airbyte_emitted_at,
