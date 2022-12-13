@@ -11,6 +11,7 @@ select
     sku,
     price,
     title as name,
+    json_build_object('name', sku, 'addr', price) AS data,
     shop_url,
     created_at,
     product_id as parent_id,
