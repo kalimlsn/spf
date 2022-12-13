@@ -11,7 +11,7 @@ select
     sku,
     price,
     title as name,
-    attributes,
+    option1 as attributes,
     shop_url,
     created_at,
     product_id as parent_id,
