@@ -11,7 +11,7 @@ select
     sku,
     price,
     title as name,
-    option1 as attributes,
+    	'[{"a":"foo"},{"b":"bar"},{"c":"baz"}]'::json  as attributes,
     shop_url,
     created_at,
     product_id as parent_id,
