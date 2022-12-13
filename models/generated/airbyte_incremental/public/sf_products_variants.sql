@@ -11,7 +11,7 @@ select
     sku,
     price,
     title as name,
-    json_build_array(json_build_object('name', option1, 'option', option2)) AS attribute,
+    json_build_array(json_build_object('name', option1, 'option', option1) ,json_build_object('name', option2, 'option', option2) ,json_build_object('name', option3, 'option', option3)) AS attribute,
     shop_url,
     created_at,
     product_id as parent_id,
