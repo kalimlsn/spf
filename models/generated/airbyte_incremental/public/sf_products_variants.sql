@@ -12,7 +12,8 @@ select
     price,
     title as name,
 --  	'[{"name":"option1" ,"option" :option1},{"name":"option1" ,"option" : option2"},{"name":"option1" ,"option" : option3}]'::json  as attributes,
-    {{ option1 + ' ' + option2 }} as attributes,
+--     {{ option1 + ' ' + option2 }} as attributes,
+    json_build_object('name', option1, 'addr', option2) AS attributes
     shop_url,
     created_at,
     product_id as parent_id,
