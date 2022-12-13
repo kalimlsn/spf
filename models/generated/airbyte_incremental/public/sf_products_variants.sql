@@ -11,7 +11,7 @@ select
     sku,
     price,
     title as name,
-    	'[{"a":"foo"},{"b":"bar"},{"c":"baz"}]'::json  as attributes,
+    	'[{"name":"option1" ,"option" : "Yellow"},{"name":"option1" ,"option" : "Yellow"},{"name":"option1" ,"option" : "Yellow"}]'::json  as attributes,
     shop_url,
     created_at,
     product_id as parent_id,
