@@ -4,7 +4,7 @@
 1. Copy `airbyte-normalization/sample_files/profiles.yml` over to `~/.dbt/profiles.yml`
 1. Edit to configure your profiles accordingly
 
-## Running dbt
+## Running dbt   
 
 1. `cd airbyte-normalization`
 1. You can now run dbt commands, to check the setup is fine: `dbt debug`
